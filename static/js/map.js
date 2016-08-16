@@ -2,6 +2,7 @@
 // Global map.js variables
 //
 
+
 var $selectExclude
 var $selectPokemonNotify
 var $selectRarityNotify
