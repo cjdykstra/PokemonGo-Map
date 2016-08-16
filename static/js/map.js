@@ -1249,8 +1249,10 @@ function setupScannedMarker (item) {
     clickable: false,
     center: circleCenter,
     radius: 70, // metres
-    fillColor: getColorByDate(item['last_modified']),
-    strokeWeight: 1
+    //fillColor: getColorByDate(item['last_modified']),
+    fillOpacity: 0,
+    strokeColor: getColorByDate(item['last_modified']),
+    strokeWeight: 1.5
   })
 
   return marker
