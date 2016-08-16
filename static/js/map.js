@@ -9,6 +9,7 @@ var $selectStyle
 var $selectIconResolution
 var $selectIconSize
 var $selectLuredPokestopsOnly
+var $selectScannedMarkerStyle
 
 var language = document.documentElement.lang === '' ? 'en' : document.documentElement.lang
 var idToPokemon = {}
@@ -759,6 +760,10 @@ var StoreOptions = {
     type: StoreTypes.String
   },
   'iconSizeModifier': {
+    default: 0,
+    type: StoreTypes.Number
+  }
+  'scannedMarkerStyle': {
     default: 0,
     type: StoreTypes.Number
   }
@@ -1815,7 +1820,20 @@ $(function () {
     redrawPokemon(mapData.pokemons)
     redrawPokemon(mapData.lurePokemons)
   })
+//
+  $selectScannedMarkerStyle = $('#"scanned-location-marker-type')
 
+  $selectScannedMarkerStyle.select2({
+    placeholder: 'Select Scanned Style',
+    minimumResultsForSearch: Infinity
+  })
+
+  $selectScannedMarkerStyle.on('change', function () {
+    Store.set('scannedMarkerStyle', this.value)
+    updateMap()
+  })
+
+//
   $selectLuredPokestopsOnly = $('#lured-pokestops-only-switch')
 
   $selectLuredPokestopsOnly.select2({
