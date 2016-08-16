@@ -762,7 +762,7 @@ var StoreOptions = {
   'iconSizeModifier': {
     default: 0,
     type: StoreTypes.Number
-  }
+  },
   'scannedMarkerStyle': {
     default: 0,
     type: StoreTypes.Number
