@@ -1856,13 +1856,13 @@ $(function () {
 $selectScannedLocationStyle = $('#scannedlocation-style')
  
    $.getJSON('static/dist/data/scannedlocationstyle.min.json').done(function (data) {
-     searchScannedLocations = data
+     //searchScannedLocations = data
      var searchScannedLocationStyleList = []
  
      $.each(data, function (key, value) {
        searchScannedLocationStyleList.push({
          id: key,
-         text: value.name
+         text: i8ln(value)
        })
      })
  
@@ -1873,8 +1873,8 @@ $selectScannedLocationStyle = $('#scannedlocation-style')
      })
  
      $selectScannedLocationStyle.on('change', function (e) {
-       var selectScannedLocationStyle = $selectScannedLocationStyle.val()
-       Store.set('scannedLocationStyle', selectScannedLocationStyle)
+       var selectScannedLocStyle = $selectScannedLocationStyle.val()
+       Store.set('scannedLocationStyle', selectScannedLocStyle)
        //updateSearchMarker(selectScannedLocationStyle)
      })
  
