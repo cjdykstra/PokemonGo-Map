@@ -768,7 +768,7 @@ var StoreOptions = {
   'scannedMarkerStyle': {
     default: 0,
     type: StoreTypes.Number
-  }
+  },
   'scannedLocationStyle': {
     default: 'fill',
     type: StoreTypes.String
