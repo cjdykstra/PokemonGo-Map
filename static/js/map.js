@@ -9,13 +9,15 @@ var $selectStyle
 var $selectIconResolution
 var $selectIconSize
 var $selectLuredPokestopsOnly
-var $selectScannedMarkerStyle
+var $selectScannedLocationStyle
 
 var language = document.documentElement.lang === '' ? 'en' : document.documentElement.lang
 var idToPokemon = {}
 var i8lnDictionary = {}
 var languageLookups = 0
 var languageLookupThreshold = 3
+
+var scannedLocationStyles
 
 var excludedPokemon = []
 var notifiedPokemon = []
@@ -766,6 +768,10 @@ var StoreOptions = {
   'scannedMarkerStyle': {
     default: 0,
     type: StoreTypes.Number
+  }
+  'scannedLocationStyle': {
+    default: 'fill',
+    type: StoreTypes.String
   }
 }
 
@@ -1846,6 +1852,36 @@ $(function () {
     updateMap()
   })
 })
+
+$selectScannedLocationStyle = $('#scannedlocation-style')
+ 
+   $.getJSON('static/dist/data/scannedlocationstyle.min.json').done(function (data) {
+     searchMarkerStyles = data
+     var searchScannedLocationStyleList = []
+ 
+     $.each(data, function (key, value) {
+       searchScannedLocationStyleList.push({
+         id: key,
+         text: value.name
+       })
+     })
+ 
+     $selectScannedLocationStyle.select2({
+       placeholder: 'Scanned Location Style',
+       data: searchScannedLocationStyleList,
+       minimumResultsForSearch: Infinity
+     })
+ 
+     $selectScannedLocationStyle.on('change', function (e) {
+       var selectScannedLocationStyle = $selectScannedLocationStyle.val()
+       Store.set('scannedLocationStyle', selectScannedLocationStyle)
+       //updateSearchMarker(selectScannedLocationStyle)
+     })
+ 
+     $selectScannedLocationStyle.val(Store.get('scannedLocationStyle')).trigger('change')
+ 
+     //updateSearchMarker(Store.get('lockMarker'))
+   })
 
 $(function () {
   function formatState (state) {
