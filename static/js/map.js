@@ -1856,7 +1856,7 @@ $(function () {
 $selectScannedLocationStyle = $('#scannedlocation-style')
  
    $.getJSON('static/dist/data/scannedlocationstyle.min.json').done(function (data) {
-     searchMarkerStyles = data
+     searchScannedLocations = data
      var searchScannedLocationStyleList = []
  
      $.each(data, function (key, value) {
